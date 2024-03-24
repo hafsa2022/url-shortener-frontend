@@ -1,0 +1,36 @@
+<div class="maincontainer">
+  <h1>URL Shortener</h1>
+  <form>
+    <label for="long-url">Enter or Paste Your long URL:</label>
+    <input
+      type="text"
+      id="long-url"
+      name="long-url"
+      [(ngModel)]="data.oldUrl"
+      [ngModelOptions]="{ standalone: true }"
+    />
+    <div style="color: red; margin-top: 2px" *ngIf="error == true">
+      This URL not valid
+    </div>
+    <button type="submit" id="shorten-btn" (click)="generateUrlShortener()">
+      Shorten
+    </button>
+  </form>
+  <div id="short-url-container" *ngIf="response != null">
+    <p>Here's your shortened URL:</p>
+    <div id="short-url">
+      <form>
+        <input
+          type="text"
+          id="new_url"
+          name="new_url"
+          [(ngModel)]="response.new_url"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <button type="button" id="copy-btn" (click)="copyUrlShortener()">
+          {{ copy }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
